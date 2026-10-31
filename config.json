@@ -1,0 +1,13 @@
+{
+  "instances_dir": "instances",
+  "store_dir": "store",
+  "source": "auto",
+  "workers": 8,
+  "timeout": 30,
+  "retries": 3,
+  "verify_existing": true,
+  "download_assets": true,
+  "share_assets": true,
+  "keep_manifest_minutes": 10,
+  "last_version": "26.3"
+}

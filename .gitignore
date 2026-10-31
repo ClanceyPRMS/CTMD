@@ -1,0 +1,38 @@
+# 运行时数据（体积大，不进仓库）
+store/
+instances/
+cache/
+.scratch/
+dist/
+build/
+*.spec
+
+# 第三方程序和启动器目录（版权 / 隐私，不该进仓库）
+PCL/
+*.exe
+
+# 本机盘点产物（含个人存档清单）
+docs/pcl_inventory.json
+docs/verify_sandbox.json
+
+# 本地代码备份
+.backup/
+
+# 安装器 / 临时日志
+*.log
+*.part
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# 编辑器
+.vscode/
+.idea/
+*.swp
+
+# 系统
+Thumbs.db
+desktop.ini
