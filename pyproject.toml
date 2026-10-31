@@ -1,0 +1,19 @@
+[project]
+name = "ctmd"
+version = "1.0.0"
+description = "Creative Trinity Minecraft Downloader — 给 PCL2 / HMCL / 官方启动器准备原版游戏文件，并做实例隔离"
+readme = "README.md"
+requires-python = ">=3.10"
+
+# 运行时零第三方依赖是 CTMD 的设计约束：只用标准库 + tkinter。
+# 往这里加任何东西之前，先想想「双击 启动 CTMD.bat 就能跑」这条还成不成立。
+dependencies = []
+
+[dependency-groups]
+# 只有开发和打包才需要的东西放在这里：uv sync 后 uv run python build.py 就能打包，
+# 系统 Python 一个包都不用装。
+dev = ["pyinstaller>=6.22,<7"]
+
+[tool.uv]
+# 应用项目，不是库：不让 uv 把自己 install 成包
+package = false

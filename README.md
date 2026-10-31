@@ -200,6 +200,23 @@ python ctmd.py doctor                               # 测速 + Java 体检
 | `--no-assets` | 不下载资源文件（能进游戏，但没声音/没语言文件） |
 | `--copy` | 复制资源而不是链接（占空间，但实例可整体搬走） |
 
+### 开发者环境（可选，uv）
+
+日常使用**不需要**这一步：CTMD 运行时只用标准库 + tkinter，装好 Python 就能双击跑。
+`pyproject.toml` 存在的唯一目的，是给「跑测试」和「打 exe」配一个隔离环境，
+免得 PyInstaller 被系统 Python 里的其他项目升到不兼容的大版本。
+
+```bat
+uv sync                                  :: 按 uv.lock 建 .venv（约 8 秒，不下 Python）
+uv run python -m unittest discover -s tests -v
+uv run python build.py                   :: 用 .venv 里的 PyInstaller 打包
+```
+
+* `dependencies = []` 是刻意的：**别往运行时依赖里加东西**，「双击就能跑」是这个项目的本钱；
+* `dev` 组只锁 `pyinstaller>=6.22,<7`——打包链是唯一会因外部升级莫名其妙坏掉的一环；
+* 没有装 uv 也没关系，`python ctmd.py`、`python build.py` 照样工作；
+  两边打出来的是同一个东西（单文件约 12 MB，已在空目录验证过 config/store/instances 落位）。
+
 ---
 
 ## 实测记录（2026-10-21，本机）
@@ -226,7 +243,7 @@ PCL2（正式版 2.99.0.0）把实例的 `.minecraft` 添加为游戏目录后�
 （这条路径踩过坑，已写进单元测试）。
 
 ```bat
-python -m unittest discover -s tests -v     # 11 个用例
+python -m unittest discover -s tests -v     # 25 个用例
 ```
 
 ## 目录说明
